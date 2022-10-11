@@ -1,21 +1,56 @@
+
+
 .logo {
     margin-left: 16px;
     width: 20px;
    
 }
 
+
+
 .spotlight{
     background-image: url("../../../public/assets/pelicula.jpg");/*TODO IMAGE BACKGROUND*/
     width: 100%;
-    height: 50vh;
+    height: 65vh;
     background-position: center;
     background-size: cover;
-    margin-bottom: 20px;
     position: relative;
 }
-.spotlight .gradient{
+.gradient{
         background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
         width : 100%;
         height: 100%;
+       
 }
+
+.submenu{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.btn-vertical{
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-play{
+    background: #fff;
+    font-weight: 500;
+    border-radius: 2px;
+    color: #000;
+    padding: 4px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
