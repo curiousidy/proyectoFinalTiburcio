@@ -1,5 +1,8 @@
-import { IonCol, IonContent, IonHeader, IonPage, IonRow, IonToolbar, IonIcon } from '@ionic/react';
-import { add, caretDownOutline, informationCircleOutline, play } from 'ionicons/icons';
+import { IonCol, IonContent, IonHeader, IonPage, IonRow, IonToolbar, IonIcon, IonButton } from '@ionic/react';
+import { add, caretDownOutline, ellipsisVertical, informationCircleOutline, play } from 'ionicons/icons';
+import { Swiper, SwiperSlide } from "swiper/react";
+import '../../../node_modules/swiper/swiper.min.css';
+
 import './home.css';
 
 const Home: React.FC = () => {
@@ -27,13 +30,10 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen={true}>
+      <IonContent fullscreen={true} className="content">
         <div className='spotlight'>
         <div className='gradient'></div>
-            <div className='info'>
-              <img className='title' src='/assets/info.jpg' alt='tituloHome' /*TODO title image*//>
-            </div>
-
+ 
             <IonRow className='submenu'>
               <IonCol size='4' className='ion-text-center'>
                 <div className='btn-vertical'>
@@ -56,6 +56,58 @@ const Home: React.FC = () => {
                 </div>
               </IonCol>
             </IonRow>
+        </div>
+
+
+        <div className='ion-padding'>
+          <span className='section-title' /*TODO SECTION LIST FROM DATABASE */>Section List</span>
+
+          <Swiper
+                    effect={"coverflow"}
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView={2.4}
+                    spaceBetween={20}
+
+
+                    coverflowEffect={{
+                        rotate: 50,
+                        stretch: 1,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: false,
+                    }}
+                    pagination={true}
+                    className="mySwiper"
+                >
+                  <SwiperSlide className='slide'>
+                        <p >Debajo</p>
+                        
+                    </SwiperSlide>
+                    <SwiperSlide className='slide'>
+                       
+                        <p >Del</p>
+                    </SwiperSlide>
+                    <SwiperSlide className='slide'>
+                        <p >🐟🐟🐟</p>
+                        <IonRow>
+                    <IonCol>
+                      <IonButton>
+                        <IonIcon icon={informationCircleOutline}/>
+                      </IonButton>
+                    </IonCol>
+
+                    <IonCol>
+                      <IonButton>
+                        <IonIcon icon={ellipsisVertical}/>
+                      </IonButton>
+                    </IonCol>
+                </IonRow>
+                    </SwiperSlide>
+                    
+                </Swiper>
+                
+            <span className='section-title' /*TODO SECTION LIST FROM DATABASE */>Second Section List</span>
         </div>
       </IonContent>
     </IonPage>

@@ -6,14 +6,19 @@
    
 }
 
-
+.content{
+    --ion-background-color:#000;
+    --offset-top: 0px;
+    position: absolute;
+}
 
 .spotlight{
     background-image: url("../../../public/assets/pelicula.jpg");/*TODO IMAGE BACKGROUND*/
     width: 100%;
-    height: 65vh;
+    height: 50vh;
     background-position: center;
     background-size: cover;
+    margin-bottom: 20px;
     position: relative;
 }
 .gradient{
@@ -49,6 +54,24 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+/*TODO*/
+.section-title{
+    color: white;
+    font-weight: 600;
+    font-size: large;
+}
+
+.mySwiper{
+    background-color: #fff;
+    margin-top: 20px;
+    
+}
+
+.slide{
+    color: #000;
+    height: 30vh;
 }
 
 
