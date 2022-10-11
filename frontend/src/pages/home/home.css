@@ -1,0 +1,21 @@
+.logo {
+    margin-left: 16px;
+    width: 20px;
+   
+}
+
+.spotlight{
+    background-image: url("../../../public/assets/pelicula.jpg");/*TODO IMAGE BACKGROUND*/
+    width: 100%;
+    height: 50vh;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 20px;
+    position: relative;
+}
+.spotlight .gradient{
+        background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
+        width : 100%;
+        height: 100%;
+}
+

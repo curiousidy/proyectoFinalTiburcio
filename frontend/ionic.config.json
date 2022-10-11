@@ -1,0 +1,7 @@
+{
+  "name": "filmflix",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
