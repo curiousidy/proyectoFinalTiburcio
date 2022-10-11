@@ -66,12 +66,12 @@ const Home: React.FC = () => {
                     effect={"coverflow"}
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={2.4}
+                    slidesPerView={1.2}
                     spaceBetween={20}
 
 
                     coverflowEffect={{
-                        rotate: 50,
+                        rotate: 10,
                         stretch: 1,
                         depth: 100,
                         modifier: 1,
@@ -81,30 +81,29 @@ const Home: React.FC = () => {
                     className="mySwiper"
                 >
                   <SwiperSlide className='slide'>
-                        <p >Debajo</p>
-                        
-                    </SwiperSlide>
-                    <SwiperSlide className='slide'>
-                       
-                        <p >Del</p>
-                    </SwiperSlide>
-                    <SwiperSlide className='slide'>
-                        <p >🐟🐟🐟</p>
-                        <IonRow>
-                    <IonCol>
-                      <IonButton>
-                        <IonIcon icon={informationCircleOutline}/>
-                      </IonButton>
-                    </IonCol>
+                        <img src='/assets/construction.png' alt='contruction'/>
+                  </SwiperSlide>
 
-                    <IonCol>
-                      <IonButton>
-                        <IonIcon icon={ellipsisVertical}/>
-                      </IonButton>
-                    </IonCol>
-                </IonRow>
+                  <SwiperSlide className='slide'>
+                      <img src='/assets/construction.png' alt='contruction'/>
+                  </SwiperSlide>
+
+                  <SwiperSlide className='slide'>
+                        <img src='/assets/construction.png' alt='contruction'/>
+                        <IonRow>
+                          <IonCol>
+                            <IonButton fill='clear' color="medium" size='small'>
+                              <IonIcon icon={informationCircleOutline}/>
+                            </IonButton>
+                          </IonCol>
+
+                          <IonCol className='ion-text-right'>
+                            <IonButton fill='clear' color="medium" size='small'>
+                              <IonIcon icon={ellipsisVertical}/>
+                            </IonButton>
+                          </IonCol>
+                         </IonRow>
                     </SwiperSlide>
-                    
                 </Swiper>
                 
             <span className='section-title' /*TODO SECTION LIST FROM DATABASE */>Second Section List</span>
