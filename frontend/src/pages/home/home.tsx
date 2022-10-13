@@ -1,5 +1,5 @@
-import { IonCol, IonContent, IonHeader, IonPage, IonRow, IonToolbar, IonIcon, IonButton } from '@ionic/react';
-import { add, caretDownOutline, ellipsisVertical, informationCircleOutline, play } from 'ionicons/icons';
+import { IonCol, IonContent, IonPage, IonRow, IonIcon, IonButton } from '@ionic/react';
+import { add, ellipsisVertical, informationCircleOutline, play } from 'ionicons/icons';
 import { Swiper, SwiperSlide } from "swiper/react";
 import '../../../node_modules/swiper/swiper.min.css';
 
@@ -8,27 +8,6 @@ import './home.css';
 const Home: React.FC = () => {
   return (
     <IonPage>
-
-      <IonHeader class='ion-no-border'>
-        <IonToolbar>
-          <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
-          
-          <IonRow class='ion-justify-content-center ion-text-center'>
-            <IonCol size="4" class='ion-text-rigth'>
-              TV Show
-            </IonCol>
-
-            <IonCol size="4">
-              Movies
-            </IonCol>
-        
-            <IonCol size='4'/*TODO ONCLICK*/>
-              Categories <IonIcon icon={caretDownOutline}></IonIcon>
-            </IonCol>
-
-          </IonRow>
-        </IonToolbar>
-      </IonHeader>
 
       <IonContent fullscreen={true} className="content">
         <div className='spotlight'>
