@@ -18,7 +18,7 @@ const Search: React.FC = () => {
   return (
     <IonPage>
          <IonToolbar>
-          <IonTitle>Search Film</IonTitle>
+          <IonTitle className='title'>Search Film</IonTitle>
         </IonToolbar>
         <IonToolbar className='searchBar'>
           <IonSearchbar debounce={200} onIonChange={(ev) => handleChange(ev)}/>

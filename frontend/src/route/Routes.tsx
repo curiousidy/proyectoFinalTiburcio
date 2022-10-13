@@ -1,9 +1,15 @@
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { homeOutline, copyOutline, searchOutline, downloadOutline } from 'ionicons/icons';
+import { homeOutline, copyOutline, searchOutline,  peopleCircleOutline } from 'ionicons/icons';
 import React from 'react'
 import { Redirect, Route } from 'react-router';
-import { Home, ComingSoon, Search, Downloads } from '../pages';
+import ComingSoon from '../pages/comingsoon/comingsoon';
+import Home from '../pages/home/home';
+import Profile from '../pages/profile/userProfile';
+import Search from '../pages/search/search';
+
+
+
 
 const Routes: React.FC = () => {
     return (
@@ -19,8 +25,8 @@ const Routes: React.FC = () => {
               <Route path="/search">
                 <Search />
               </Route>
-                <Route path="/downloads">
-                <Downloads />
+                <Route path="/profile">
+                <Profile />
               </Route>
               <Route exact path="/">
                 <Redirect to="/home" />
@@ -40,9 +46,9 @@ const Routes: React.FC = () => {
                 <IonIcon icon={searchOutline} />
                 <IonLabel>Search</IonLabel>
               </IonTabButton>
-              <IonTabButton tab="downloads" href="/downloads">
-                <IonIcon icon={downloadOutline} />
-                <IonLabel>Download</IonLabel>
+              <IonTabButton tab="profile" href="/profile">
+                <IonIcon icon={peopleCircleOutline} />
+                <IonLabel>Profile</IonLabel>
               </IonTabButton>
             </IonTabBar>
           </IonTabs>

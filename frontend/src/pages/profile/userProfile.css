@@ -1,0 +1,14 @@
+.title{
+    text-align: center;
+}
+
+.userProfileButton{
+    display:grid;
+    align-content: space-around;
+}
+
+
+.formData > input{
+    width: 100%;
+    margin-top: 20px;
+}
