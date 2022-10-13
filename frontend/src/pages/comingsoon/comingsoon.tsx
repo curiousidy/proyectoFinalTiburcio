@@ -1,13 +1,14 @@
-import { IonButton, IonCol, IonContent, IonIcon, IonPage, IonRow } from '@ionic/react';
-import { informationCircleOutline, ellipsisVertical } from 'ionicons/icons';
+import { IonContent, IonPage } from '@ionic/react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import '../../../node_modules/swiper/swiper.min.css';
+import { Layout } from '../../components/layout';
 
 import './commingsoon.css'
 
 const ComingSoon: React.FC = () => {
   return (
     <IonPage>
+      <Layout>
       <IonContent fullscreen={true}>
           <Swiper
                           effect={"coverflow"}
@@ -40,6 +41,7 @@ const ComingSoon: React.FC = () => {
                         </SwiperSlide>
           </Swiper>
       </IonContent>
+      </Layout>
     </IonPage>
   );
 };

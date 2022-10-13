@@ -1,3 +1,9 @@
 .imgFullScreenSlider{
     height: 95vh;
 }
+
+.searchform{
+    display: flex;
+    width: 100%;
+    padding: 20px;
+}
