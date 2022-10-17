@@ -1,7 +1,22 @@
-.searchBar{
-    margin-top: 20px;
-}
+
 
 .title{
     text-align: center;
+}
+
+.wrapper{
+    height: 231px;
+}
+
+.nameFilm{
+    font-weight: bold;
+}
+
+.description{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 6; /* number of lines to show */
+           line-clamp: 6;
+   -webkit-box-orient: vertical;
 }
