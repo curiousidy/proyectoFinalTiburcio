@@ -10,23 +10,25 @@ import { fecthMovieHomeGenre, fecthMovieHomeByGenre } from '../../services/api';
 
 const Home: React.FC = () => {
 
-  const [genre, setGenre] = useState([]);
-  const [films, setFilms] = useState([]);
+  const [genre, setGenre] = useState<any[]>([]);
+  const [films, setFilms] = useState<any[]>([]);
+  const set = new Set() 
 
   const ellementHidden =[]
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    fecthMovieHomeGenre().then((response)=>{
-      setGenre(response.genres)
-      console.log(response.genres);
-      
+    fecthMovieHomeGenre().then(({genres})=>{
+      setGenre([...genres])
     })
-   
+    
     fecthMovieHomeByGenre().then(responseFilm => {
       setFilms(responseFilm.results)
-      console.log(responseFilm.results);});
-    
+      films.map(e=> set.add(e.genre_ids[0]))
+       setGenre(genre.filter(genres => Array.from(set).includes(genres.id) ))
+      console.log(genre);
+      
+    })
     
   }, [])
   
@@ -66,14 +68,10 @@ const Home: React.FC = () => {
           <div className='ion-padding'>
             {
               genre.map((genreFilm:any) => (
-            
+              
             <IonList>
-               {films.map((filmByGenre:any) => (
-                          (genreFilm.id === filmByGenre.genre_ids[0]) ?
-                            <span className='section-title'>{genreFilm.name}</span>
-                          : null
-                        ))
-                }
+               <span className='section-title'>{genreFilm.name}</span>
+              
 
               <Swiper
                         effect={"coverflow"}
