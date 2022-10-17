@@ -25,7 +25,7 @@ const Search: React.FC = (): JSX.Element => {
     let query = "";
     const target = ev.target as HTMLIonSearchbarElement;
     if (target) query = target.value!.toLowerCase();
-   console.log(results);
+   console.log(query);
    
     
     setResults(results.filter((d:any) => d.title.toLowerCase().indexOf(query) > -1));
@@ -47,7 +47,7 @@ const Search: React.FC = (): JSX.Element => {
         <IonContent fullscreen={true} className='ion-padding'>
             <IonList>
               { results.map(result => (
-                <IonItem>{ result.title }</IonItem>
+                <IonItem >{ result.title } {result.vote_average}</IonItem>
               ))}
             </IonList>
         </IonContent>
