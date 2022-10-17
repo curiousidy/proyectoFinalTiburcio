@@ -63,10 +63,17 @@
     font-size: large;
 }
 
-.mySwiper{
-    margin-top: 20px;
-    
+section-title-hidden{
+    diplay:none;
 }
+
+
+.mySwiper{
+    margin-top: 0 auto;
+}
+
+
+
 
 
 
