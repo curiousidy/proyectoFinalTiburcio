@@ -14,24 +14,29 @@ const Home: React.FC = () => {
   const [films, setFilms] = useState<any[]>([]);
   const set = new Set() 
 
-  const ellementHidden =[]
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    fecthMovieHomeGenre().then(({genres})=>{
-      setGenre([...genres])
-    })
-    
-    fecthMovieHomeByGenre().then(responseFilm => {
-      setFilms(responseFilm.results)
-      films.map(e=> set.add(e.genre_ids[0]))
-       setGenre(genre.filter(genres => Array.from(set).includes(genres.id) ))
-      console.log(genre);
-      
-    })
+      asyncFunction();
     
   }, [])
-  
+
+  useEffect(()=>{
+    console.log(films);
+    films.map(e=>  set.add(e.genre_ids[0]))
+    setGenre(genre.filter(genres => Array.from(set).includes(genres.id) ))
+    console.log(set);
+    
+  },[films])
+ 
+  const asyncFunction = async () => {
+    const {genres} = await fecthMovieHomeGenre()
+    setGenre([...genres])
+      
+    const {results} = await fecthMovieHomeByGenre() 
+    setFilms(results)
+    
+  }
  
   return (
     <IonPage>
