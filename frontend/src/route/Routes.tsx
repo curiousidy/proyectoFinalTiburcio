@@ -5,6 +5,9 @@ import React from 'react'
 import { Redirect, Route } from 'react-router';
 import ComingSoon from '../pages/comingsoon/comingsoon';
 import Home from '../pages/home/home';
+import Login from '../pages/login/login';
+
+
 import MovieDetails from '../pages/movieDetails/movieDetails';
 import Profile from '../pages/profile/userProfile';
 import Search from '../pages/search/search';
@@ -17,6 +20,9 @@ const Routes: React.FC = () => {
         <IonReactRouter>
         <IonTabs>
             <IonRouterOutlet>
+            <Route exact path="/login">
+                <Login/>
+              </Route>
               <Route exact path="/home">
                 <Home />
               </Route>
@@ -33,7 +39,7 @@ const Routes: React.FC = () => {
                 <MovieDetails />
               </Route>
               <Route exact path="/">
-                <Redirect to="/home" />
+                <Redirect to="/login" />
               </Route>
             </IonRouterOutlet>
             
