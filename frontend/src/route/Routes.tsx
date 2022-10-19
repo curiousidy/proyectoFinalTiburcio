@@ -5,6 +5,7 @@ import React from 'react'
 import { Redirect, Route } from 'react-router';
 import ComingSoon from '../pages/comingsoon/comingsoon';
 import Home from '../pages/home/home';
+import MovieDetails from '../pages/movieDetails/movieDetails';
 import Profile from '../pages/profile/userProfile';
 import Search from '../pages/search/search';
 
@@ -25,8 +26,11 @@ const Routes: React.FC = () => {
               <Route path="/search">
                 <Search />
               </Route>
-                <Route path="/profile">
+              <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/movieDetails/:id">
+                <MovieDetails />
               </Route>
               <Route exact path="/">
                 <Redirect to="/home" />

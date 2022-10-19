@@ -8,11 +8,15 @@ import { Layout } from '../../components/layout';
 import './home.css';
 import { fecthMovieHomeGenre, fecthMovieHomeByGenre } from '../../services/api';
 
+import { useHistory } from 'react-router-dom';
+
 const Home: React.FC = () => {
 
   const [genre, setGenre] = useState<any[]>([]);
   const [films, setFilms] = useState<any[]>([]);
-  const set = new Set() 
+  const set = new Set();
+
+  let history = useHistory();
 
 
   useEffect(() => {
@@ -22,11 +26,12 @@ const Home: React.FC = () => {
   }, [])
 
   useEffect(()=>{
-    console.log(films);
+   
     films.map(e=>  set.add(e.genre_ids[0]))
     setGenre(genre.filter(genres => Array.from(set).includes(genres.id) ))
-    console.log(set);
     
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[films])
  
   const asyncFunction = async () => {
@@ -104,7 +109,7 @@ const Home: React.FC = () => {
                                   <img src={`https://image.tmdb.org/t/p/w500${filmByGenre.poster_path}`} alt='poster'/>
                                   <IonRow>
                                     <IonCol>
-                                      <IonButton fill='clear' color="medium" size='small'>
+                                      <IonButton fill='clear' color="medium" size='small' onClick={() => history.push(`/movieDetails/${filmByGenre.id}`)} >
                                         <IonIcon icon={informationCircleOutline}/>
                                       </IonButton>
                                     </IonCol>

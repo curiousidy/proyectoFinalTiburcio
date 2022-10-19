@@ -1,5 +1,6 @@
 import {IonCol, IonContent, IonItem, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar} from '@ionic/react';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { fecthMovie } from '../../services/api';
 import './search.css'
 
@@ -8,12 +9,13 @@ const Search: React.FC = ()=> {
  
   let [results, setResults] = useState<any[]>([]);
   let [resultsAux, setResultsAux] = useState<any[]>([]);
+  let history = useHistory();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     fecthMovie()
     .then((response)=>{
-       console.log(response.results);
+     
        setResults(response.results);
        setResultsAux(response.results);
     });
@@ -46,7 +48,7 @@ const Search: React.FC = ()=> {
         <IonContent fullscreen={true} className='ion-padding'>
             <IonList>
               { resultsAux.map(result => (
-                <IonItem>
+                <IonItem onClick={() => history.push(`/movieDetails/${result.id}`)}>
                     <IonCol className='wrapper' >
                       <p className='nameFilm'>{ result.title }</p>
                       <p className='description'>{result.overview}</p>

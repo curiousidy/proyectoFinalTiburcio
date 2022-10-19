@@ -14,7 +14,7 @@ const ComingSoon: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     fecthMovieUpcoming()
     .then((response)=>{
-       console.log(response.results);
+      
        setResults(response.results);
     });
     

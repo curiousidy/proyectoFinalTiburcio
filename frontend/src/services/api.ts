@@ -70,3 +70,21 @@ export const fecthMovieHomeByGenre = async () =>{
     }
 }
 
+export const fecthMovieDetails = async (id:string) =>{
+    try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=b79570d592ddbfc38a6a3f2ee0b593fc&language=es-Es`, 
+    {
+        method: 'GET',
+        credentials: 'same-origin'
+    }
+        
+    );
+    const data = await response.json();
+    return data;
+    }catch (error) {
+         console.error(error);
+
+    }
+}
+
+
