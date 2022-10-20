@@ -1,12 +1,42 @@
 import { IonPage, IonToolbar, IonTitle, IonContent, IonRow, IonCol, IonButton, IonHeader } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
+import { Camera, CameraResultType, CameraSource,  } from '@capacitor/camera';
 
 import './userProfile.css';
 
 
 export interface ProfileInterface {}
 
+
 const Profile : React.FC = () => {
+  const [image, setImage] = useState<any>("/assets/avatar.png");
+
+  const takePicture = async () => {
+    const cameraResult = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+      source : CameraSource.Prompt,
+      promptLabelPhoto: 'Gallery',
+      promptLabelPicture : 'Camera',
+      promptLabelHeader : 'Cancel'
+    });
+   
+    // image.webPath will contain a path that can be set as an image src.
+    // You can access the original file using image.path, which can be
+    // passed to the Filesystem API to read the raw data of the image,
+    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+    var imageUrl = cameraResult.webPath;
+  
+    // Can be set to the src of an image now
+    // imageElement.src = imageUrl;
+    setImage(imageUrl)
+    console.log(imageUrl);
+    
+    
+  };
+  
+
 	return (
 	<IonPage>
       <IonHeader>
@@ -20,18 +50,15 @@ const Profile : React.FC = () => {
           <IonContent className="ion-padding">
             <IonRow>
                 <IonCol>
-                    <img className="userAvatar" src="/assets/avatar.png" alt="Rounded avatar" />
+                    <img className="userAvatar" src={image} alt="Rounded avatar" />
                 </IonCol>
 
                 <IonCol className='userProfileButton'>
                 
-                    <IonButton expand='full'>
-                        Take photo
+                    <IonButton expand='full' onClick={() => takePicture()}>
+                        Take photo / Upload Image
                     </IonButton>
-                    <IonButton expand='full'>
-                        Upload image
-                    </IonButton>
-                
+                   
                 </IonCol>
               </IonRow>
               <form className='formData'>
