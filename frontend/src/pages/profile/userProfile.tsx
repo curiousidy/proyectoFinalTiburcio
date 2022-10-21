@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Camera, CameraResultType, CameraSource,  } from '@capacitor/camera';
 
 import './userProfile.css';
+import { Layout } from '../../components/layout';
 
 
 export interface ProfileInterface {}
@@ -39,6 +40,9 @@ const Profile : React.FC = () => {
 
 	return (
 	<IonPage>
+    <Layout>
+    <>
+    
       <IonHeader>
           <IonToolbar>
             <IonTitle className='title'>User Profile</IonTitle>
@@ -74,6 +78,8 @@ const Profile : React.FC = () => {
               </form>
             </IonContent>
       </IonContent>
+      </>
+      </Layout>
     </IonPage>
   );
 };

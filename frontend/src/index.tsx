@@ -9,12 +9,15 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
+
+
+
 root.render(
   <React.StrictMode>
     <Auth0Provider 
       domain = 'dev-tjazj88j3nvb4idg.us.auth0.com' 
       clientId='zIT0TUWpaEqCcHXs2VlJc7zLLo35ZP7z'
-      redirectUri={window.location.origin}>
+      redirectUri= {"http://localhost:8100/home"}>
         <App />
     </Auth0Provider>
   </React.StrictMode>

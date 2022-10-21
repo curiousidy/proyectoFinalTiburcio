@@ -5,6 +5,7 @@ import { fecthMovieDetails } from '../../services/api';
 import { useForm } from 'react-hook-form';
 
 import './movieDetails.css';
+import { Layout } from '../../components/layout';
 
 const MovieDetails: React.FC = () => {
 
@@ -31,6 +32,8 @@ const MovieDetails: React.FC = () => {
     
   return (
     <IonPage>
+        <Layout>
+            <>
         <IonHeader>
             <IonToolbar>
             <IonButtons>
@@ -99,6 +102,8 @@ const MovieDetails: React.FC = () => {
                 <p>Otras Opiniones</p>
             </IonRow>
         </IonContent>
+        </>
+        </Layout>
     </IonPage>
   )
 }
