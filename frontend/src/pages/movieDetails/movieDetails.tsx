@@ -18,12 +18,12 @@ const MovieDetails: React.FC = () => {
     
     useEffect(() => {
           asyncFunction();
-          console.log(filmDetail);
+         
           
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
-      useEffect(() => {},[filmDetail]);
+      useEffect(() => { console.log(filmDetail);},[filmDetail]);
 
       const asyncFunction:any = async () => setFilmDetail(await fecthMovieDetails(id));
 
@@ -36,7 +36,7 @@ const MovieDetails: React.FC = () => {
             <>
         <IonHeader>
             <IonToolbar>
-            <IonButtons>
+            <IonButtons slot='start'>
                 <IonBackButton />
             </IonButtons>
             <IonTitle className='title'>Movie Details</IonTitle>

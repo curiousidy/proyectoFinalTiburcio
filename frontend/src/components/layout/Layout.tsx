@@ -17,9 +17,9 @@ const Layout : React.FC<LayoutInterface> = ({children}:LayoutInterface) => {
     <IonHeader class='ion-no-border'>
       <IonToolbar>
         <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
-        <IonButton slot='end' onClick={() => logout({ returnTo: window.location.origin })}>
+        {/* <IonButton slot='end' onClick={() => logout({ returnTo: window.location.origin })}>
           <IonIcon icon={exit}/>
-        </IonButton>
+        </IonButton> */}
 
       </IonToolbar>
     </IonHeader>
