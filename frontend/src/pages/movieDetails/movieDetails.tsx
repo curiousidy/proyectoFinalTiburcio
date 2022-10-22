@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonHeader, IonItem, IonLabel, IonPage, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/react'
+import { IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonPage, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { fecthMovieDetails } from '../../services/api';
@@ -9,7 +9,8 @@ import { Layout } from '../../components/layout';
 
 const MovieDetails: React.FC = () => {
 
-    const [filmDetail, setFilmDetail] = useState<any>({});
+    const initialState = {};
+    const [filmDetail, setFilmDetail] = useState<any>(initialState);
     const { register, handleSubmit, formState: { errors },  } = useForm();
 
     let { id } = useParams<any>();
@@ -18,12 +19,14 @@ const MovieDetails: React.FC = () => {
     
     useEffect(() => {
           asyncFunction();
-         
-          
+          return () => {
+            console.log(filmDetail);
+            setFilmDetail(initialState);
+        }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
-      useEffect(() => { console.log(filmDetail);},[filmDetail]);
+      useEffect(() => {},[filmDetail]);
 
       const asyncFunction:any = async () => setFilmDetail(await fecthMovieDetails(id));
 
@@ -36,9 +39,6 @@ const MovieDetails: React.FC = () => {
             <>
         <IonHeader>
             <IonToolbar>
-            <IonButtons slot='start'>
-                <IonBackButton />
-            </IonButtons>
             <IonTitle className='title'>Movie Details</IonTitle>
             </IonToolbar>
         </IonHeader>
@@ -48,6 +48,7 @@ const MovieDetails: React.FC = () => {
             <IonRow className='rowFilmDetail'>
                 <img src={`https://image.tmdb.org/t/p/w300${filmDetail?.poster_path}`} alt='poster'/>
             </IonRow>
+           
 
             <IonRow ><p className='paragraphFilmDetail'>{filmDetail.title}</p></IonRow>
 
@@ -62,15 +63,7 @@ const MovieDetails: React.FC = () => {
                     {filmDetail.release_date}
                 </IonCol>
             </IonRow>
-            {/* <IonRow>
-                    {
-                        filmDetail.production_companies.map((productionCompany:any) => 
-                            <IonCol>
-                                <img src={`https://image.tmdb.org/t/p/w500${productionCompany?.logo_path}`} alt="logoCompany" />
-                            </IonCol>
-                        )
-                    }
-            </IonRow> */}
+    
             <IonRow className='rowFilmDetail'>
                 {filmDetail.overview}
             </IonRow>

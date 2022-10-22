@@ -1,4 +1,4 @@
-import { IonHeader, IonToolbar, IonContent, IonButton, IonIcon } from '@ionic/react';
+import { IonHeader, IonToolbar, IonContent, IonButton, IonIcon, IonButtons, IonBackButton, IonLabel, IonCol, IonRow } from '@ionic/react';
 import { useAuth0 } from "@auth0/auth0-react";
 
 import React from 'react';
@@ -16,10 +16,24 @@ const Layout : React.FC<LayoutInterface> = ({children}:LayoutInterface) => {
     
     <IonHeader class='ion-no-border'>
       <IonToolbar>
-        <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
-        {/* <IonButton slot='end' onClick={() => logout({ returnTo: window.location.origin })}>
-          <IonIcon icon={exit}/>
-        </IonButton> */}
+        <IonRow>
+          <IonCol>
+          <IonButtons>
+                  <IonBackButton />
+          </IonButtons>
+          </IonCol>
+        
+          <IonCol>
+            <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
+          </IonCol>
+        
+          <IonCol className='ion-text-right'>
+            <IonButton size='small' onClick={() => logout({ returnTo: window.location.origin })}>
+              <IonIcon icon={exit}/>
+            </IonButton>
+          </IonCol>
+
+        </IonRow>
 
       </IonToolbar>
     </IonHeader>

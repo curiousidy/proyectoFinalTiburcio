@@ -14,7 +14,8 @@ const ComingSoon: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     fecthMovieUpcoming()
     .then((response)=>{
-      
+        console.log(response.results);
+        
        setResults(response.results);
     });
     
@@ -43,7 +44,7 @@ const ComingSoon: React.FC = () => {
                       >
                         {
                           results.map(result =>(
-                            <SwiperSlide className='slide'>
+                            <SwiperSlide className='slide'key={result.id}>
                               <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt="posterImage" className='imgFullScreenSlider'/>
                             </SwiperSlide>
                           ))
