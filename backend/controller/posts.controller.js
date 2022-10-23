@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new post
 exports.create = (req, res) => {
     // Validate request
-    console.log(req.body);
+    
     if (!req.body.post && !req.body.userEmail) {
         res.status(400).send({
             message : "I need a posts"
@@ -29,9 +29,14 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve all Posts from the database
+// Retrieve all Posts from the database by one id movie
 exports.findAll = (req, res) => {
-    Bird.findAll().then(data =>{
+    const movie_id = req.params.id
+    Bird.findAll({
+        where: {
+            movie_id
+        }
+    }).then(data =>{
         res.send(data);
     })
     .catch(err => {
@@ -41,12 +46,17 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Post with an id
-exports.findOne = (req, res) => {
-    id = {...req.params};
-    Bird.findOne(id).then(data => {
+// Retrieve all Posts from the database by one user email
+exports.findByEmail = (req, res) => {
+    const userEmail = req.params.userEmail
+    Bird.findAll({
+        where: {
+            userEmail
+        }
+    }).then(data =>{
         res.send(data);
-    }).catch(err => {
+    })
+    .catch(err => {
         res.status(500).send({
             message: err.message || "Some error ocurred while retrieving a post."
         });

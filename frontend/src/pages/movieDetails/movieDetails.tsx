@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonPage, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/react'
+import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCol, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonPage, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { fecthMovieDetails } from '../../services/api';
@@ -12,26 +12,35 @@ const MovieDetails: React.FC = () => {
 
     const initialState = {};
     const [filmDetail, setFilmDetail] = useState<any>(initialState);
+    const [postDetail, setPostDetail] = useState<any>([]);
     const { register, handleSubmit, formState: { errors },  } = useForm();
     const { user } = useAuth0();
 
     let { id } = useParams<any>();
-        
+    
+    
     
     useEffect(() => {
           asyncFunction();
+          moviePost();
           return () => {
-            console.log(filmDetail);
             setFilmDetail(initialState);
+
         }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
-      useEffect(() => {},[filmDetail]);
+    //   useEffect(() => {},[filmDetail]);
 
 
 
       const asyncFunction:any = async () => setFilmDetail(await fecthMovieDetails(id));
+
+      const moviePost:any = async () => {
+        const response = await fetch(`http://localhost:8080/api/posts/${id}`);
+        const data = await response.json();
+        setPostDetail([...await data]);  
+      }
 
       const sendData = async (e:any) => {
       
@@ -46,12 +55,8 @@ const MovieDetails: React.FC = () => {
         headers:{'Content-Type': 'application/json',},
         body: JSON.stringify(post),
       });
-
-      
-        
+        moviePost();
     }
-      
-    
   return (
     <IonPage>
         <Layout>
@@ -101,8 +106,27 @@ const MovieDetails: React.FC = () => {
             </IonRow>
             </form>
             </IonRow>
-            <IonRow>
                 <p>Otras Opiniones</p>
+            <IonRow className='ion-padding'>
+                {
+                  postDetail &&
+                 
+                  postDetail.map(({userEmail, post}:any)=>{
+                    return (
+                    <IonCard>
+                     <IonCardHeader>
+                      <IonCardSubtitle>
+                        {userEmail}
+                      </IonCardSubtitle>
+                     </IonCardHeader>
+                     <IonCardContent>
+                        {post}
+                     </IonCardContent>
+                    </IonCard>
+                    )
+                  })
+                }
+                
             </IonRow>
         </IonContent>
         </>

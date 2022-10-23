@@ -1,16 +1,18 @@
-import { IonPage, IonToolbar, IonTitle, IonContent, IonRow, IonCol, IonButton, IonHeader } from '@ionic/react';
-import React, { useState } from 'react';
+import { IonPage, IonToolbar, IonTitle, IonContent, IonRow, IonCol, IonButton, IonHeader, IonCard, IonCardSubtitle, IonCardContent, IonLabel, IonTextarea } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
 import { Camera, CameraResultType, CameraSource,  } from '@capacitor/camera';
 
 import './userProfile.css';
 import { Layout } from '../../components/layout';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 export interface ProfileInterface {}
 
 
 const Profile : React.FC = () => {
   const [image, setImage] = useState<any>("/assets/avatar.png");
+  const { user } = useAuth0();
+  const [postEmail, setPostEmail] = useState<any>([]);
 
   const takePicture = async () => {
     const cameraResult = await Camera.getPhoto({
@@ -32,11 +34,42 @@ const Profile : React.FC = () => {
     // Can be set to the src of an image now
     // imageElement.src = imageUrl;
     setImage(imageUrl)
-    console.log(imageUrl);
     
     
   };
   
+  useEffect(() => {
+    emailPost();
+    
+  }, [])
+  
+
+
+  const emailPost:any = async () => {
+    const response = await fetch(`http://localhost:8080/api/posts/byemail/${user?.email}`);
+    const data = await response.json();
+    setPostEmail([...await data]);  
+  }
+
+  const deleteInformation = async (id:string) => {
+    
+    await fetch(`http://localhost:8080/api/posts/${id}`,{
+      method:'DELETE',
+    });
+    emailPost();
+  }
+
+   const updateInformation = async (id:string) => {
+      const post = {
+        post:document.getElementById(id)?.textContent
+      }
+      await fetch(`http://localhost:8080/api/posts/${id}`,{
+        method:'PUT',
+        body: JSON.stringify(post),
+        headers:{'Content-Type': 'application/json',}
+      });
+      emailPost();
+   }
 
 	return (
 	<IonPage>
@@ -65,17 +98,36 @@ const Profile : React.FC = () => {
                    
                 </IonCol>
               </IonRow>
-              <form className='formData'>
+              <IonRow>
+                {user?.email}
+              </IonRow>
+              <IonLabel>Post escrito por el usuario:</IonLabel>
+              {
+                postEmail && 
+                postEmail.map((postUser:any) => {
+                  return (
+                  <IonCard>
+                    <IonHeader>
+                      <IonCardSubtitle>
+                      {postUser.createdAt}
+                      </IonCardSubtitle>
+                    </IonHeader>
+                    <IonCardContent>
+                      <IonTextarea id={postUser.id} autoGrow value={postUser.post}></IonTextarea>
+                      <IonRow>
+                        <IonCol>
+                          <IonButton expand='full' size='small'onClick={() => updateInformation(postUser.id)} >Editar</IonButton>
+                        </IonCol>
+                        <IonCol>
+                          <IonButton expand='full' size='small' onClick={() => deleteInformation(postUser.id)}>Borrar</IonButton>
+                        </IonCol>
+                      </IonRow>
+                    </IonCardContent>
+                  </IonCard>
 
-                <input value="Nombre"/>
-
-                <input value="Apellidos"/>
-
-                <input value="Tu email"/>
-
-                <input value="Tu contraseña" />
-
-              </form>
+                  )
+                })
+                  }
             </IonContent>
       </IonContent>
       </>

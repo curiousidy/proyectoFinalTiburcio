@@ -7,11 +7,11 @@ module.exports = app => {
     router.post( "/" , post.create );
 
 
-   // Retrieve all posts
-    router.get( "/" , post.findAll );
+   // Retrieve all posts by one id
+    router.get( "/:id" , post.findAll );
 
-   // Retrieve a single post with id
-    router.get( "/:id" , post.findOne );
+  // Retrieve all posts by one id
+  router.get( "/byemail/:userEmail" , post.findByEmail );
 
    // Update a post with id
     router.put( "/:id" , post.update );
