@@ -5,7 +5,8 @@ const Op = db.Sequelize.Op;
 // Create and Save a new post
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.power && !req.body.genre) {
+    console.log(req.body);
+    if (!req.body.post && !req.body.userEmail) {
         res.status(400).send({
             message : "I need a posts"
         });

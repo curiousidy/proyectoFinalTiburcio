@@ -3,6 +3,7 @@ const cors = require ( "cors" ) ;
 
 const app = express ( ) ;
 
+
 // parse requests of content - type application / json
 app.use ( express.json ( ) ) ;
 
@@ -12,7 +13,7 @@ app.use(cors());
 
 const db = require("./models"); 
 
-db.Sequelize.sync({ force: false}).then(() => { 
+db.Sequelize.sync({ force: true}).then(() => { 
     console.log("Drop and re-sync db.");
 })
 

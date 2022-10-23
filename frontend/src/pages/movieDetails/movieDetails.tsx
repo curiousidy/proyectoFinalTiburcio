@@ -6,16 +6,17 @@ import { useForm } from 'react-hook-form';
 
 import './movieDetails.css';
 import { Layout } from '../../components/layout';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const MovieDetails: React.FC = () => {
 
     const initialState = {};
     const [filmDetail, setFilmDetail] = useState<any>(initialState);
     const { register, handleSubmit, formState: { errors },  } = useForm();
+    const { user } = useAuth0();
 
     let { id } = useParams<any>();
         
-    console.log(id);
     
     useEffect(() => {
           asyncFunction();
@@ -28,9 +29,27 @@ const MovieDetails: React.FC = () => {
 
       useEffect(() => {},[filmDetail]);
 
+
+
       const asyncFunction:any = async () => setFilmDetail(await fecthMovieDetails(id));
 
-      const sendData = async (e:any) => {console.log(e,'holiii');}
+      const sendData = async (e:any) => {
+      
+       const post = {
+        userEmail: user?.email,
+        post: e.text,
+        movie_id: filmDetail.id
+       }
+
+      const response = await fetch('http://localhost:8080/api/posts',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json',},
+        body: JSON.stringify(post),
+      });
+
+      
+        
+    }
       
     
   return (
@@ -78,15 +97,6 @@ const MovieDetails: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonButton type="submit"  className='opinionForm'>Enviar</IonButton>
-
-                </IonCol>
-                <IonCol>
-                    <IonButton type="submit"  className='opinionForm'>Editar</IonButton>
-                    
-                </IonCol>
-                <IonCol>
-                    <IonButton type="submit"  className='opinionForm'>Borrar</IonButton>
-                    
                 </IonCol>
             </IonRow>
             </form>

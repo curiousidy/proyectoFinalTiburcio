@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) =>{
         movie_id: {
             type: Sequelize.STRING
         },
-        name: {
+        userEmail: {
             type: Sequelize.STRING
         },
         post: {
