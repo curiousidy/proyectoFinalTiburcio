@@ -91,11 +91,7 @@ https://www.docker.com/products/docker-desktop/
 
 Go to docker hub, search for the mysql image, download it and follow the tutorial on the page. https://hub.docker.com/_/mysql
 ```
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/docker.png" alt="docker" width="300px">
-</p>
-</div>
+
 
 Auth0
 
@@ -118,22 +114,133 @@ npm install @auth0/auth0-react
 - Configuring the Auth0 provider in react:
     -index.tsx:
 ```
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/indextsx.png" alt="index" width="300px">
-</p>
-</div>
+
+```js
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
+import {Auth0Provider} from '@auth0/auth0-react';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+
+
+root.render(
+  <React.StrictMode>
+    <Auth0Provider 
+      domain = 'dev-tjazj88j3nvb4idg.us.auth0.com' 
+      clientId='zIT0TUWpaEqCcHXs2VlJc7zLLo35ZP7z'
+      redirectUri= {"http://localhost:8100/home"}>
+        <App />
+    </Auth0Provider>
+  </React.StrictMode>
+);
+defineCustomElements(window);
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.unregister();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+```
 
 ```
     - To provide the user data: we need to import auth0 like this, import { useAuth0 } from '@auth0/auth0-react'; and then use it to access any of the data that it allows us to use, in this case we access the data to know if a user is logged in or not. If it is logged in we will show the home with the access to each one of the options of the menu, if it is not logged in, you return to the login:
 
 ```
 
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/routestsx.png" alt="routes" width="300px">
-</p>
-</div>
+```js
+import { useAuth0 } from '@auth0/auth0-react';
+import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { homeOutline, copyOutline, searchOutline,  peopleCircleOutline } from 'ionicons/icons';
+import React from 'react'
+import { Redirect, Route, useLocation } from 'react-router';
+import ComingSoon from '../pages/comingsoon/comingsoon';
+import Home from '../pages/home/home';
+import Login from '../pages/login/login';
+
+
+import MovieDetails from '../pages/movieDetails/movieDetails';
+import Profile from '../pages/profile/userProfile';
+import Search from '../pages/search/search';
+
+
+const Routes: React.FC = () => {
+  const { loginWithRedirect,isAuthenticated } = useAuth0();
+  
+    return (
+
+      <>
+        {
+        isAuthenticated ? 
+          <IonReactRouter>
+          <IonTabs>
+              <IonRouterOutlet>
+                <Route exact path="/home">
+                  <Home />
+                </Route>
+                <Route exact path="/comingsoon">
+                  <ComingSoon />
+                </Route>
+                <Route path="/search">
+                  <Search />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/movieDetails/:id">
+                  <MovieDetails />
+                </Route>
+                <Route exact path="/">
+                  <Redirect to="/login" />
+                </Route>
+              </IonRouterOutlet>
+            
+            
+            
+            
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="home" href="/home">
+                  <IonIcon icon={homeOutline} />
+                  <IonLabel>Home</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="comingsoon" href="/comingsoon">
+                  <IonIcon icon={copyOutline} />
+                  <IonLabel>Coming Soon</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="search" href="/search">
+                  <IonIcon icon={searchOutline} />
+                  <IonLabel>Search</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="profile" href="/profile">
+                  <IonIcon icon={peopleCircleOutline} />
+                  <IonLabel>Profile</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+            
+            
+            
+            </IonTabs>
+          </IonReactRouter>
+        : <Login loginRedirect={loginWithRedirect}/>
+        }
+      </>
+    );
+  };
+  
+  export default Routes;
+
+```
 
 ```
     - This data is saved as a cookie. This way you can know if the user is logged in or not.
@@ -259,12 +366,6 @@ https://www.docker.com/products/docker-desktop/
 
 Entrar en docker hub, buscar la imagen mysql, descargarla y seguir el tutorial que indica en la propia página. https://hub.docker.com/_/mysql
 ```
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/docker.png" alt="docker" width="300px">
-</p>
-</div>
-
 
 Auth0
 
@@ -288,21 +389,133 @@ npm install @auth0/auth0-react
 - Configurando el provider(proveedor de datos) de Auth0 en react:
     -index.tsx:
 ```
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/indextsx.png" alt="index" width="300px">
-</p>
-</div>
+
+```js
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
+import {Auth0Provider} from '@auth0/auth0-react';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+
+
+root.render(
+  <React.StrictMode>
+    <Auth0Provider 
+      domain = 'dev-tjazj88j3nvb4idg.us.auth0.com' 
+      clientId='zIT0TUWpaEqCcHXs2VlJc7zLLo35ZP7z'
+      redirectUri= {"http://localhost:8100/home"}>
+        <App />
+    </Auth0Provider>
+  </React.StrictMode>
+);
+defineCustomElements(window);
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.unregister();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+```
 
 ```
     - Para proveer los datos del usuario: necesitamos importar auth0 tal que así, import { useAuth0 } from '@auth0/auth0-react'; y luego utilizarlo para acceder a cualquiera de los datos que nos permita utilizar, en este caso accedemos al dato para saber si está logueado o no un usuario. Si está logueado mostraremos el home con el acceso a cada una de las opciones del menú, si no está logueado, vuelves al login:
 
 ```
-<div>
-<p style = 'text-align:center;'>
-<img src="./assets/routestsx.png" alt="routes" width="300px">
-</p>
-</div>
+
+```js
+import { useAuth0 } from '@auth0/auth0-react';
+import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { homeOutline, copyOutline, searchOutline,  peopleCircleOutline } from 'ionicons/icons';
+import React from 'react'
+import { Redirect, Route, useLocation } from 'react-router';
+import ComingSoon from '../pages/comingsoon/comingsoon';
+import Home from '../pages/home/home';
+import Login from '../pages/login/login';
+
+
+import MovieDetails from '../pages/movieDetails/movieDetails';
+import Profile from '../pages/profile/userProfile';
+import Search from '../pages/search/search';
+
+
+const Routes: React.FC = () => {
+  const { loginWithRedirect,isAuthenticated } = useAuth0();
+  
+    return (
+
+      <>
+        {
+        isAuthenticated ? 
+          <IonReactRouter>
+          <IonTabs>
+              <IonRouterOutlet>
+                <Route exact path="/home">
+                  <Home />
+                </Route>
+                <Route exact path="/comingsoon">
+                  <ComingSoon />
+                </Route>
+                <Route path="/search">
+                  <Search />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/movieDetails/:id">
+                  <MovieDetails />
+                </Route>
+                <Route exact path="/">
+                  <Redirect to="/login" />
+                </Route>
+              </IonRouterOutlet>
+            
+            
+            
+            
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="home" href="/home">
+                  <IonIcon icon={homeOutline} />
+                  <IonLabel>Home</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="comingsoon" href="/comingsoon">
+                  <IonIcon icon={copyOutline} />
+                  <IonLabel>Coming Soon</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="search" href="/search">
+                  <IonIcon icon={searchOutline} />
+                  <IonLabel>Search</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="profile" href="/profile">
+                  <IonIcon icon={peopleCircleOutline} />
+                  <IonLabel>Profile</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+            
+            
+            
+            </IonTabs>
+          </IonReactRouter>
+        : <Login loginRedirect={loginWithRedirect}/>
+        }
+      </>
+    );
+  };
+  
+  export default Routes;
+
+```
 
 ```
     - Este dato se guarda como una cookie. De esta manera se puede saber si el usuario está o no logueado.
