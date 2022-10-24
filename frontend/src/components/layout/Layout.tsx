@@ -1,8 +1,8 @@
-import {IonIcon, IonCol, IonHeader, IonRow, IonToolbar, IonContent } from '@ionic/react';
-import { caretDownOutline } from 'ionicons/icons';
+import { IonHeader, IonToolbar, IonContent, IonButton, IonIcon, IonButtons, IonBackButton, IonLabel, IonCol, IonRow } from '@ionic/react';
+import { useAuth0 } from "@auth0/auth0-react";
+
 import React from 'react';
-
-
+import { exit } from 'ionicons/icons';
 
 
 export interface LayoutInterface {
@@ -10,27 +10,31 @@ export interface LayoutInterface {
 }
 
 const Layout : React.FC<LayoutInterface> = ({children}:LayoutInterface) => {
+  const { logout } = useAuth0();
 	return (
     <>
     
     <IonHeader class='ion-no-border'>
       <IonToolbar>
-        <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
+        <IonRow>
+          <IonCol>
+          <IonButtons>
+                  <IonBackButton />
+          </IonButtons>
+          </IonCol>
         
-        <IonRow class='ion-justify-content-center ion-text-center'>
-          <IonCol size="4" class='ion-text-rigth'>
-            TV Show
+          <IonCol>
+            <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
           </IonCol>
-
-          <IonCol size="4">
-            Movies
-          </IonCol>
-      
-          <IonCol size='4'/*TODO ONCLICK*/>
-            Categories <IonIcon icon={caretDownOutline}></IonIcon>
+        
+          <IonCol className='ion-text-right'>
+            <IonButton size='small' onClick={() => logout({ returnTo: window.location.origin })}>
+              <IonIcon icon={exit}/>
+            </IonButton>
           </IonCol>
 
         </IonRow>
+
       </IonToolbar>
     </IonHeader>
 

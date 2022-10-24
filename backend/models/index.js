@@ -20,6 +20,6 @@ const db = {}
 db.Sequelize = Sequelize;
 db.Sequelize = sequelize;
 
-// db.angrybird = require('./angrybird.model.js')(sequelize,Sequelize); TODO
+db.angrybird = require('./post.model.js')(sequelize,Sequelize);
 
 module.exports = db;
