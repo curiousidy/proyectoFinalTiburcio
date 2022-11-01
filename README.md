@@ -255,7 +255,8 @@ const Routes: React.FC = () => {
 
 ## Link to POSTMAN with endpoints used.
 
-//TODO
+## [😲 touch me](https://www.postman.com/supply-geologist-74417416/workspace/final-project/collection/21375750-19e668b7-19b5-4b16-8b68-e2154d1eeaff?action=share&creator=21375750)
+After accessing the link, click on the "Final Project" section to see the endpoints.
 
 ## Authors ✒️
 
@@ -530,7 +531,8 @@ const Routes: React.FC = () => {
 
 ## Enlace a POSTMAN con los endpoints utilizados.
 
-//TODO
+## [😲 pincha aquí](https://www.postman.com/supply-geologist-74417416/workspace/final-project/collection/21375750-19e668b7-19b5-4b16-8b68-e2154d1eeaff?action=share&creator=21375750)
+Tras acceder al enlace debe pulsar en el apartado "Proyecto Final" para ver los endpoints.
 
 ## Autores ✒️
 
