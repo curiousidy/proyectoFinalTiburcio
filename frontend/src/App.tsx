@@ -20,6 +20,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 /* Theme variables */
 import './theme/variables.css';
@@ -29,9 +30,11 @@ import { Routes } from './route';
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <Routes/>
-  </IonApp>
+    <IonApp>
+        <Routes/>
+    </IonApp>
+  
 );
+defineCustomElements(window);
 
 export default App;

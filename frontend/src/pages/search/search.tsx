@@ -1,32 +1,63 @@
-import {IonContent, IonItem, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar} from '@ionic/react';
-import { useState } from 'react';
+import {IonCol, IonContent, IonItem, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar} from '@ionic/react';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { fecthMovie } from '../../services/api';
+import './search.css'
 
-const Search: React.FC = () => {
+const Search: React.FC = ()=> {
 
-  const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
-  let [results, setResults] = useState([...data]);
+ 
+  let [results, setResults] = useState<any[]>([]);
+  let [resultsAux, setResultsAux] = useState<any[]>([]);
+  let history = useHistory();
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fecthMovie()
+    .then((response)=>{
+     
+       setResults(response.results);
+       setResultsAux(response.results);
+    });
+    
+  }, [])
+  
   
   const handleChange = (ev: Event) => {
+    
     let query = "";
     const target = ev.target as HTMLIonSearchbarElement;
     if (target) query = target.value!.toLowerCase();
-
-    setResults(data.filter(d => d.toLowerCase().indexOf(query) > -1));
+    
+   
+    setResultsAux(results.filter((d:any) => d.title.toLowerCase().indexOf(query) > -1));
+    
   }
-
+  
   return (
-    <IonPage>
-         <IonToolbar>
+    
+     <IonPage>
+        <IonToolbar>
           <IonTitle className='title'>Search Film</IonTitle>
         </IonToolbar>
         <IonToolbar className='searchBar'>
-          <IonSearchbar debounce={200} onIonChange={(ev) => handleChange(ev)}/>
+          <IonSearchbar debounce={200} 
+          onIonChange={(ev) => handleChange(ev)}
+        />
         </IonToolbar>
         <IonContent fullscreen={true} className='ion-padding'>
             <IonList>
-              { results.map(result => (
-                <IonItem>{ result }</IonItem>
+              { resultsAux.map(result => (
+                <IonItem onClick={() => history.push(`/movieDetails/${result.id}`)}>
+                    <IonCol className='wrapper' >
+                      <p className='nameFilm'>{ result.title }</p>
+                      <p className='description'>{result.overview}</p>
+                    </IonCol>
+                    <IonCol>
+                      <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt="posterImage"/>
+                    </IonCol>
+                </IonItem>
+                
               ))}
             </IonList>
         </IonContent>

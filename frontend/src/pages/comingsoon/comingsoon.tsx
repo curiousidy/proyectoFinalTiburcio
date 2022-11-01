@@ -1,11 +1,23 @@
 import { IonContent, IonPage } from '@ionic/react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import '../../../node_modules/swiper/swiper.min.css';
 import { Layout } from '../../components/layout';
+import { fecthMovieUpcoming } from '../../services/api';
 
 import './commingsoon.css'
 
 const ComingSoon: React.FC = () => {
+  let [results, setResults] = useState<any[]>([]);
+  
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fecthMovieUpcoming()
+    .then((response)=>{
+       setResults(response.results);
+    });
+    
+  }, [])
   return (
     <IonPage>
       <Layout>
@@ -28,17 +40,13 @@ const ComingSoon: React.FC = () => {
                           pagination={true}
                           className="mySwiperComingSoon"
                       >
-                        <SwiperSlide className='slide'>
-                              <img src='/assets/pelicula.jpg' alt='contruction' className='imgFullScreenSlider'/>
-                        </SwiperSlide>
-
-                        <SwiperSlide className='slide'>
-                              <img src='/assets/amazingSpiderman.jpg' alt='contruction' className='imgFullScreenSlider'/>
-                        </SwiperSlide>
-
-                        <SwiperSlide className='slide'>
-                            <img src='/assets/amazingSpiderman2.jpg' alt='contruction' className='imgFullScreenSlider'/>
-                        </SwiperSlide>
+                        {
+                          results.map(result =>(
+                            <SwiperSlide className='slide'key={result.id}>
+                              <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt="posterImage" className='imgFullScreenSlider'/>
+                            </SwiperSlide>
+                          ))
+                        }
           </Swiper>
       </IonContent>
       </Layout>
