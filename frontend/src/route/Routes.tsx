@@ -3,7 +3,7 @@ import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } 
 import { IonReactRouter } from '@ionic/react-router';
 import { homeOutline, copyOutline, searchOutline,  peopleCircleOutline } from 'ionicons/icons';
 import React from 'react'
-import { Redirect, Route, useLocation } from 'react-router';
+import { Redirect, Route } from 'react-router';
 import ComingSoon from '../pages/comingsoon/comingsoon';
 import Home from '../pages/home/home';
 import Login from '../pages/login/login';
@@ -16,6 +16,7 @@ import Search from '../pages/search/search';
 
 const Routes: React.FC = () => {
   const { loginWithRedirect,isAuthenticated } = useAuth0();
+ 
   
     return (
 

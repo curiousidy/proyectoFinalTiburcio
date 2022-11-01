@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import React from 'react';
 import { exit } from 'ionicons/icons';
+import './layout.css';
 
 
 export interface LayoutInterface {
@@ -24,7 +25,7 @@ const Layout : React.FC<LayoutInterface> = ({children}:LayoutInterface) => {
           </IonCol>
         
           <IonCol>
-            <img className='logo' src='/assets/logo.png' alt='logoFilmFlix'/>
+            <img className='logo' src='/assets/netflix.jpg' alt='logoFilmFlix'/>
           </IonCol>
         
           <IonCol className='ion-text-right'>
