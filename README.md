@@ -258,6 +258,10 @@ const Routes: React.FC = () => {
 ## [😲 touch me](https://www.postman.com/supply-geologist-74417416/workspace/final-project/collection/21375750-19e668b7-19b5-4b16-8b68-e2154d1eeaff?action=share&creator=21375750)
 After accessing the link, click on the "Final Project" section to see the endpoints.
 
+## Other links related to the app
+[User and password access](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
+[App running](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
+
 ## Authors ✒️
 
 * **Idaira Aleman Quintana**
@@ -533,6 +537,10 @@ const Routes: React.FC = () => {
 
 ## [😲 pincha aquí](https://www.postman.com/supply-geologist-74417416/workspace/final-project/collection/21375750-19e668b7-19b5-4b16-8b68-e2154d1eeaff?action=share&creator=21375750)
 Tras acceder al enlace debe pulsar en el apartado "Proyecto Final" para ver los endpoints.
+
+## Otros enlaces relacionados con la app
+[Acceso con usuario y contraseña](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
+[App en funcionamiento](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
 
 ## Autores ✒️
 
