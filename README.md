@@ -259,8 +259,8 @@ const Routes: React.FC = () => {
 After accessing the link, click on the "Final Project" section to see the endpoints.
 
 ## Other links related to the app
-[User and password access](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
-[App running](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
+- [User and password access](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
+- [App running](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
 
 ## Authors ✒️
 
@@ -539,8 +539,8 @@ const Routes: React.FC = () => {
 Tras acceder al enlace debe pulsar en el apartado "Proyecto Final" para ver los endpoints.
 
 ## Otros enlaces relacionados con la app
-[Acceso con usuario y contraseña](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
-[App en funcionamiento](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
+- [Acceso con usuario y contraseña](https://drive.google.com/file/d/1srgMXYYEH0DH4WoxTDsVKP53AoOpSg5k/view?usp=sharing)
+- [App en funcionamiento](https://drive.google.com/file/d/1bgz7rBODtgcNuLT7LpVLBX-sh9vHosbI/view?usp=sharing)
 
 ## Autores ✒️
 
