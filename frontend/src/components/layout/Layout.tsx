@@ -24,7 +24,7 @@ const Layout : React.FC<LayoutInterface> = ({children}:LayoutInterface) => {
           </IonButtons>
           </IonCol>
         
-          <IonCol>
+          <IonCol className='ion-text-center'>
             <img className='logo' src='/assets/netflix.jpg' alt='logoFilmFlix'/>
           </IonCol>
         
